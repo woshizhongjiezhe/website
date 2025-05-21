@@ -3,370 +3,627 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>杭州零界人工智能科技 - SINGULARITYX EVOLUTION</title>
+    <title>杭州零界人工智能科技有限公司 | SingularityX Evolution</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap');
-
         :root {
-            --primary-color: #00ffff; /* Cyan */
-            --secondary-color: #9c27b0; /* Deep Purple */
-            --background-color: #0a0f1f; /* Deep Space Blue */
-            --text-color: #e0e0e0;
-            --card-bg-color: rgba(20, 30, 60, 0.7);
-            --glow-color: rgba(0, 255, 255, 0.7);
-            --font-primary: 'Orbitron', 'Noto Sans SC', sans-serif;
-            --font-secondary: 'Noto Sans SC', sans-serif;
+            --primary-color: #0a192f;
+            --secondary-color: #00f2fe;
+            --accent-color: #4764ff;
+            --text-color: #e6f1ff;
+            --dark-accent: #112240;
+            --light-accent: #8892b0;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
         }
-
+        
         body {
-            font-family: var(--font-secondary);
-            background-color: var(--background-color);
+            background-color: var(--primary-color);
             color: var(--text-color);
-            line-height: 1.8;
+            line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
         }
-
-        /* Subtle animated background */
-        body::before {
-            content: "";
-            position: fixed;
+        
+        .container {
+            width: 100%;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header styles */
+        header {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(10,25,47,0.95) 0%, rgba(10,25,47,0.8) 100%);
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .company-name {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .company-name-en {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--light-accent);
+        }
+        
+        .vision {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.25rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: rgba(17, 34, 64, 0.6);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .header-cta {
+            display: inline-block;
+            padding: 12px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .header-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3);
+        }
+        
+        /* Animated background */
+        .animated-bg {
+            position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(10,15,31,0.9) 0%, rgba(10,15,31,0.7) 25%, transparent 50%, rgba(156,39,176,0.1) 75%, rgba(156,39,176,0.2) 100%),
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.05"><circle cx="10" cy="10" r="1" fill="%2300ffff"/><circle cx="50" cy="30" r="0.5" fill="%2300ffff"/><circle cx="80" cy="60" r="1.5" fill="%2300ffff"/><circle cx="30" cy="70" r="0.75" fill="%2300ffff"/><circle cx="70" cy="10" r="1" fill="%239c27b0"/><circle cx="20" cy="50" r="0.5" fill="%239c27b0"/><circle cx="90" cy="90" r="1.2" fill="%239c27b0"/></svg>');
-            background-size: cover, 100px 100px;
-            animation: pulseBg 20s linear infinite alternate;
-            z-index: -1;
-        }
-
-        @keyframes pulseBg {
-            0% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.05); }
-        }
-
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 20px 60px;
-            position: relative;
-        }
-
-        .logo-container {
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .logo-x {
-            width: 150px; /* Adjust as needed */
-            height: auto;
-            filter: drop-shadow(0 0 15px var(--glow-color));
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
         }
         
-        .brand-name-en {
-            font-family: var(--font-primary);
-            font-size: 2.8em;
-            color: var(--primary-color);
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
-            margin-bottom: 5px;
-            animation: slideInUp 1s ease-out 0.2s backwards;
-        }
-
-        .brand-name-cn {
-            font-family: var(--font-secondary);
-            font-size: 1.8em;
-            color: var(--text-color);
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            font-weight: 300;
-            animation: slideInUp 1s ease-out 0.4s backwards;
-        }
-        
-        .tagline {
-            font-size: 1.2em;
-            color: var(--primary-color);
-            font-weight: 300;
-            letter-spacing: 1px;
-            animation: fadeIn 1.5s ease-out 0.8s backwards;
-            text-shadow: 0 0 5px var(--glow-color);
-        }
-
-        section {
-            padding: 40px 20px;
-            margin-bottom: 30px;
-            background-color: var(--card-bg-color);
-            border-radius: 15px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.1), inset 0 0 10px rgba(0,255,255,0.05);
-            backdrop-filter: blur(5px);
-            animation: fadeInSection 1s ease-out forwards;
-            opacity: 0; /* For animation */
-        }
-        
-        /* Staggered animation for sections */
-        section:nth-of-type(1) { animation-delay: 0.5s; }
-        section:nth-of-type(2) { animation-delay: 0.7s; }
-        section:nth-of-type(3) { animation-delay: 0.9s; }
-        section:nth-of-type(4) { animation-delay: 1.1s; }
-
-
-        h2 {
-            font-family: var(--font-primary);
-            font-size: 2em;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            text-align: center;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h2::after {
-            content: '';
+        .animated-bg::before {
+            content: "";
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            border-radius: 2px;
-            box-shadow: 0 0 8px var(--glow-color);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent 20%, var(--primary-color) 70%), 
+                        linear-gradient(to bottom, transparent, var(--primary-color) 70%);
+            opacity: 0.4;
+            animation: rotate 25s linear infinite;
         }
         
-        h3 {
-            font-family: var(--font-primary);
-            font-size: 1.5em;
-            color: var(--primary-color);
-            margin-top: 20px;
-            margin-bottom: 10px;
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
-
-        p, ul {
-            margin-bottom: 15px;
-            font-size: 1.05em;
-        }
-
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        ul li {
-            padding-left: 25px;
+        
+        /* Sections */
+        section {
+            padding: 5rem 0;
             position: relative;
-            margin-bottom: 8px;
         }
-
-        ul li::before {
-            content: '»'; /* or →, •, ✓ */
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--secondary-color);
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            margin: 0.8rem auto 0;
+        }
+        
+        /* About section */
+        .about {
+            background-color: var(--dark-accent);
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        
+        .feature-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-list li::before {
+            content: "▹";
             position: absolute;
             left: 0;
-            color: var(--primary-color);
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        .job-posting {
-            margin-bottom: 30px;
-            padding: 20px;
-            border-left: 3px solid var(--secondary-color);
-            background-color: rgba(0,0,0,0.1);
-            border-radius: 0 8px 8px 0;
-        }
-
-        .contact-info strong {
-            color: var(--primary-color);
-        }
-
-        .contact-info a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            color: #fff;
-            text-shadow: 0 0 8px var(--primary-color);
+            color: var(--secondary-color);
+            font-size: 1.2rem;
         }
         
-        .org-chart {
-            font-family: 'Courier New', Courier, monospace; /* For a more "raw" tech look */
-            font-size: 0.9em;
-            line-height: 1.6;
-            background-color: rgba(0,0,0,0.2);
-            padding: 15px;
+        .about-highlight {
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        /* Jobs section */
+        .jobs {
+            background-color: var(--primary-color);
+        }
+        
+        .job-card {
+            background: var(--dark-accent);
             border-radius: 8px;
-            border: 1px dashed rgba(0, 255, 255, 0.3);
-            white-space: pre-wrap; /* To respect newlines and spaces */
-        }
-
-        .vision-quote {
-            font-size: 1.3em;
-            font-style: italic;
-            text-align: center;
-            color: var(--primary-color);
-            padding: 20px;
-            border: 1px dashed var(--primary-color);
-            border-radius: 10px;
-            margin: 20px 0;
-            text-shadow: 0 0 5px var(--glow-color);
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9em;
-            color: rgba(255,255,255,0.6);
-            margin-top: 40px;
-            border-top: 1px solid rgba(0, 255, 255, 0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .job-card:hover {
+            transform: translateY(-5px);
         }
-
-        @keyframes fadeInSection {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+        
+        .job-title {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
         }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .brand-name-en { font-size: 2.2em; }
-            .brand-name-cn { font-size: 1.5em; }
-            h2 { font-size: 1.8em; }
-            .logo-x { width: 120px; }
+        
+        .job-reqs {
+            list-style-type: none;
+            padding: 0;
         }
-
+        
+        .job-reqs li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-reqs li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        /* Structure section */
+        .structure {
+            background-color: var(--dark-accent);
+        }
+        
+        .structure-content {
+            background: rgba(17, 34, 64, 0.6);
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+        
+        .team-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .team-group-title {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .team-members {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact section */
+        .contact {
+            background-color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--dark-accent);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-method {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-method h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-highlight {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+        
+        /* Backing companies */
+        .backing-companies {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: rgba(17, 34, 64, 0.6);
+            border-radius: 8px;
+        }
+        
+        .backing-title {
+            color: var(--light-accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-accent);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--light-accent);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 2rem;
+            }
+            
+            .company-name-en {
+                font-size: 1.2rem;
+            }
+            
+            .vision {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+        
+        /* Particles effect */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        /* Glowing effect */
+        .glow {
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.7),
+                         0 0 20px rgba(0, 242, 254, 0.5),
+                         0 0 30px rgba(0, 242, 254, 0.3);
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <!-- IMPORTANT: Replace YOUR_LOGO_IMAGE_URL_HERE with the actual URL of your logo -->
-                <img src="YOUR_LOGO_IMAGE_URL_HERE" alt="SingularityX Logo" class="logo-x">
-                <!-- For local testing, if logo.png is in the same folder: <img src="logo.png" alt="SingularityX Logo" class="logo-x"> -->
+    <!-- Header with animated background -->
+    <header>
+        <div class="animated-bg"></div>
+        <div id="particles-js"></div>
+        <div class="header-content">
+            <h1 class="company-name glow">杭州零界人工智能科技有限公司</h1>
+            <h2 class="company-name-en">SingularityX Evolution</h2>
+            <div class="vision">
+                <p>"构建一个演化速度超过市场适应速度的智能体金融系统"</p>
+                <p>我们相信，未来的金融不是人设规则，而是AI设法则。我们在打造这个"AI金融生命体"，让它学会成长、对抗、适应与赚钱。</p>
             </div>
-            <h1 class="brand-name-en">SINGULARITYX</h1>
-            <p class="brand-name-cn">零界演化</p>
-            <p class="tagline">用AI改写金融系统的演化逻辑</p>
-        </header>
-
-        <section id="about-us">
-            <h2>我们是谁？ WHO ARE WE?</h2>
-            <p><strong>SingularityX Evolution Ltd. (杭州零界人工智能科技)</strong> 正在构建一套以<em>加速回报定律</em>为基础的AI驱动量化交易系统。我们的目标是打造一个具备以下能力的金融智能生态系统：</p>
-            <ul>
-                <li>策略自动生成与进化能力</li>
-                <li>智能体级别的博弈与部署结构</li>
-                <li>面向实盘执行的高频/中频交易引擎</li>
-                <li>长期可自演化的金融智能生态系统</li>
-            </ul>
-            <p>我们不是在做工具，而是在建造一个“<strong>自我成长的金融生命体</strong>”。</p>
-        </section>
-
-        <section id="vision">
-            <h2>我们的愿景 OUR VISION</h2>
-            <p class="vision-quote">“构建一个演化速度超过市场适应速度的智能体金融系统”</p>
-            <p>我们坚信，未来的金融不是人设定规则，而是AI设定法则。我们致力于打造这个“AI金融生命体”，让它学会成长、对抗、适应，并最终在市场中实现卓越表现。</p>
-        </section>
-
-        <section id="careers">
-            <h2>热招岗位 JOIN THE EVOLUTION</h2>
+            <a href="#jobs" class="header-cta">加入我们</a>
+        </div>
+    </header>
+    
+    <!-- About section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">我们是谁？</h2>
+            <div class="about-content">
+                <p><strong>SingularityX Evolution Ltd.(零界演化科技)</strong>正在构建一套以<em>加速回报定律</em>为基础的AI驱动量化交易系统，目标打造一个具备：</p>
+                <ul class="feature-list">
+                    <li>策略自动生成与进化能力</li>
+                    <li>智能体级别的博弈与部署结构</li>
+                    <li>面向实盘执行的高频/中频交易引擎</li>
+                    <li>长期可自演化的金融智能生态系统</li>
+                </ul>
+                <div class="about-highlight">
+                    <p>我们不是做工具，而是在建造一个"<strong>自我成长的金融生命体</strong>"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Jobs section -->
+    <section id="jobs" class="jobs">
+        <div class="container">
+            <h2 class="section-title">热招岗位</h2>
             
-            <div class="job-posting">
-                <h3>1. 强化学习研究工程师（策略演化方向）</h3>
-                <ul>
+            <div class="job-card">
+                <h3 class="job-title">1. 强化学习研究工程师（策略演化方向）</h3>
+                <ul class="job-reqs">
                     <li>构建自博弈、AlphaZero式智能体演化系统</li>
                     <li>熟悉 PPO/SAC/DDPG/Evolutionary Search等算法</li>
                     <li>RLlib/Stable Baselines3/PyTorch 实战经验优先</li>
                 </ul>
             </div>
-
-            <div class="job-posting">
-                <h3>2. DevOps/交易系统架构工程师</h3>
-                <ul>
+            
+            <div class="job-card">
+                <h3 class="job-title">2. DevOps/交易系统架构工程师</h3>
+                <ul class="job-reqs">
                     <li>搭建GPU训练调度与低延迟实盘执行系统</li>
-                    <li>精通容器化部署 (Docker/Kubernetes)</li>
+                    <li>精通容器化部署(Docker/Kubernetes)</li>
                     <li>有交易所接入与高可用系统经验者优先</li>
                 </ul>
             </div>
-
-            <div class="job-posting">
-                <h3>3. AI产品经理/项目协调官 (TPM)</h3>
-                <ul>
+            
+            <div class="job-card">
+                <h3 class="job-title">3. AI产品经理/项目协调官(TPM)</h3>
+                <ul class="job-reqs">
                     <li>管理策略引擎与执行系统协同开发</li>
                     <li>熟悉AI项目流程与量化金融语境</li>
                     <li>可作为CEO/CTO技术接口管理人</li>
                 </ul>
             </div>
-        </section>
-
-        <section id="team-structure">
-            <h2>我们的架构 OUR STRUCTURE</h2>
-            <p>我们推崇扁平化、高效协作的团队结构：</p>
-            <div class="org-chart">
-CTO
-  - 策略研究组 (RL + 自博弈):
-    -- 强化学习研究员 x2
-    -- 智能体仿真开发 x1
-  - 策略工程组 (量化执行):
-    -- Alpha策略工程师 x2
-    -- 数据因子工程师 x1
-  - 系统架构组 (实盘执行):
-    -- DevOps/架构师 x1
-    -- 后端开发 x1
-  - AI项目协调/产品 x1
+        </div>
+    </section>
+    
+    <!-- Structure section -->
+    <section id="structure" class="structure">
+        <div class="container">
+            <h2 class="section-title">我们的架构图</h2>
+            <div class="structure-content">
+                <div class="team-group">
+                    <h3 class="team-group-title">CTO</h3>
+                </div>
+                
+                <div class="team-group">
+                    <h3 class="team-group-title">策略研究组(RL+自博弈)：</h3>
+                    <div class="team-members">
+                        <p>强化学习研究员 x2</p>
+                        <p>智能体仿真开发 x1</p>
+                    </div>
+                </div>
+                
+                <div class="team-group">
+                    <h3 class="team-group-title">策略工程组(量化执行)：</h3>
+                    <div class="team-members">
+                        <p>Alpha策略工程师 x2</p>
+                        <p>数据因子工程师 x1</p>
+                    </div>
+                </div>
+                
+                <div class="team-group">
+                    <h3 class="team-group-title">系统架构组(实盘执行)：</h3>
+                    <div class="team-members">
+                        <p>Devops/架构师 x1</p>
+                        <p>后端开发 x1</p>
+                    </div>
+                </div>
+                
+                <div class="team-group">
+                    <h3 class="team-group-title">AI项目协调/产品 x1</h3>
+                </div>
             </div>
-        </section>
-
-        <section id="contact">
-            <h2>加入我们 HOW TO JOIN</h2>
-            <p class="contact-info">如果您对我们的愿景和挑战充满热情，请将您的简历发送至：</p>
-            <p class="contact-info"><strong>简历投递邮箱:</strong> <a href="mailto:hanxiaoxuan@wereen.com">hanxiaoxuan@wereen.com</a></p>
-            <p class="contact-info">邮件主题请注明：<strong>姓名 + 应聘岗位</strong></p>
-            <br>
-            <p class="contact-info"><strong>联系人:</strong></p>
-            <p class="contact-info">韩女士: <a href="tel:15275423180">15275423180</a></p>
-            <p class="contact-info">王女士: <a href="tel:18663979512">18663979512</a></p>
-            <br>
-            <p class="contact-info"><strong>联系电话:</strong> <a href="tel:0532-55673088">0532-55673088</a></p>
-            <br>
-            <p class="contact-info"><em>官网 (Singularity.ai) 正在上线中，敬请期待！</em></p>
-        </section>
-
-        <footer>
-            <p>&copy; 2024 杭州零界人工智能科技 (SingularityX Evolution Ltd.)</p>
-            <p>保留所有权利。</p>
-        </footer>
-    </div>
+        </div>
+    </section>
+    
+    <!-- Contact section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">加入我们</h2>
+            <div class="contact-info">
+                <div class="contact-method">
+                    <h3>简历投递</h3>
+                    <p class="contact-highlight">简历发送至: <strong>hanxiaoxuan@wereen.com</strong></p>
+                    <p>（邮件标题格式：姓名+应聘岗位）</p>
+                </div>
+                
+                <div class="contact-method">
+                    <h3>联系人</h3>
+                    <p>韩女士：<strong>15275423180</strong></p>
+                    <p>王女士：<strong>18663979512</strong></p>
+                    <p>联系电话：<strong>0532-55673088</strong></p>
+                </div>
+                
+                <div class="backing-companies">
+                    <h3 class="backing-title">背靠实力</h3>
+                    <p>本公司背靠青岛威瑞富泰能源有限公司和威瑞投资（青岛）有限公司，实力相当，欢迎加入。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 杭州零界人工智能科技有限公司 | SingularityX Evolution Ltd. 版权所有</p>
+        </div>
+    </footer>
+    
+    <!-- Particles.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Particles configuration
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#00f2fe"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": false,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#4764ff",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+        
+        // Smooth scrolling for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
