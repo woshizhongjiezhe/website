@@ -2,560 +2,89 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>杭州零界人工智能科技有限公司 - AI定义金融未来</title>
-    <style>
-        /* --- 基本重置和全局样式 --- */
-        :root {
-            --bright-green: #39FF14; /* Brighter Neon Green */
-            --dark-green-glow: rgba(57, 255, 20, 0.7);
-            --medium-green-glow: rgba(57, 255, 20, 0.5);
-            --light-green-glow: rgba(57, 255, 20, 0.3);
-            --black-bg: #000000;
-            --near-black-bg: #080808;
-            --card-bg: #101010;
-            --text-primary: #FFFFFF;
-            --text-secondary: #E0E0E0;
-            --text-muted: #B0B0B0;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Orbitron', 'Roboto', 'Noto Sans SC', sans-serif;
-            background-color: var(--black-bg);
-            color: var(--text-secondary);
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        h1, h2, h3 {
-            font-weight: 600;
-            letter-spacing: 1.5px;
-        }
-
-        h1 {
-            font-size: 3em; /* Adjusted for larger company name in hero */
-            color: var(--text-primary);
-            text-shadow: 0 0 10px var(--dark-green-glow),
-                         0 0 20px var(--medium-green-glow),
-                         0 0 30px var(--light-green-glow);
-        }
-
-        h2 {
-            font-size: 2em;
-            color: var(--bright-green);
-            border-bottom: 2px solid var(--bright-green);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            text-transform: uppercase;
-        }
-
-        p, li {
-            font-size: 1.05em;
-            line-height: 1.8;
-            color: var(--text-muted);
-        }
-
-        a {
-            color: var(--bright-green);
-            text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-        a:hover {
-            color: var(--text-primary);
-            text-shadow: 0 0 8px var(--medium-green-glow);
-        }
-
-        /* --- 开场星空凝聚动画 --- */
-        #star-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--black-bg);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-            /* Animation: 0.7s particle anim + 0.5s fade = ~1.2s total feel */
-            transition: opacity 0.5s ease-out 0.7s; /* Fade out after 0.7s, takes 0.5s */
-            cursor: pointer; /* Indicate skippable */
-        }
-        #star-loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .loader-content {
-            text-align: center;
-            position: relative; /* For z-index if text is over particles */
-            z-index: 10;
-        }
-        .loader-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.2em; /* Adjust as needed */
-            color: var(--bright-green);
-            opacity: 0;
-            /* Text appears quickly within the 1s window */
-            animation: fadeInText 0.5s ease-in-out 0.2s forwards; /* Starts after 0.2s */
-            text-shadow: 0 0 15px var(--dark-green-glow);
-        }
-        #particles-js-loader {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-        }
-
-        @keyframes fadeInText {
-            from { opacity: 0; transform: scale(0.7); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-
-        /* --- 模块样式 --- */
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            background: var(--black-bg);
-        }
-
-        #hero-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            filter: brightness(0.4) contrast(1.2); /* Darker, more contrast for bright green */
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-            border: 1px solid rgba(57, 255, 20, 0.25);
-            backdrop-filter: blur(5px);
-        }
-
-        .hero-content .company-name { /* Applied h1 style globally for this */
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5em; /* LARGER company name */
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 20px;
-            text-shadow: 0 0 15px var(--dark-green-glow), 0 0 25px var(--medium-green-glow), 0 0 40px var(--light-green-glow);
-            animation: fadeInDownHeavy 1.2s ease-out;
-        }
-
-        .hero-content .tagline {
-            font-size: 1.6em;
-            color: var(--text-secondary);
-            margin-bottom: 35px;
-            animation: fadeInUpLight 1.2s ease-out 0.5s;
-            animation-fill-mode: backwards;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(45deg, var(--bright-green), #00C800); /* Brighter green gradient */
-            color: var(--black-bg);
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            box-shadow: 0 5px 20px var(--light-green-glow);
-            border: 1px solid var(--bright-green);
-        }
-        .cta-button:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 10px 30px var(--medium-green-glow);
-            background: linear-gradient(45deg, #4EFF2F, #00E000); /* Slightly brighter on hover */
-        }
-
-        /* Section Images */
-        .section-image {
-            display: block;
-            max-width: 70%; /* Adjust as needed */
-            margin: 40px auto;
-            border-radius: 8px;
-            box-shadow: 0 0 25px var(--light-green-glow);
-            border: 2px solid var(--bright-green);
-            opacity: 0.85; /* Slight transparency for blending */
-        }
-
-        .about-us {
-            padding: 70px 0;
-            background: var(--near-black-bg);
-            background-image: linear-gradient(rgba(57, 255, 20, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(57, 255, 20, 0.02) 1px, transparent 1px);
-            background-size: 25px 25px; /* Finer grid */
-        }
-        .about-us .highlight {
-            color: var(--bright-green);
-            font-weight: bold;
-            text-shadow: 0 0 8px var(--medium-green-glow);
-        }
-        .about-us .mission-statement {
-            font-size: 1.4em;
-            font-style: italic;
-            text-align: center;
-            margin-top: 25px;
-            padding: 20px;
-            border-left: 5px solid var(--bright-green);
-            background: rgba(0, 40, 10, 0.3); /* Dark green tinted bg */
-            color: var(--text-primary);
-        }
-         .about-us ul li::before {
-            content: "✓";
-            color: var(--bright-green);
-            margin-right: 12px;
-            font-weight: bold;
-        }
-        .about-us ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-
-        .jobs-section {
-            padding: 70px 0;
-            background-color: var(--black-bg);
-        }
-        .job-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-left: 6px solid var(--bright-green);
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            overflow: hidden;
-            position: relative;
-        }
-        .job-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, transparent 49%, rgba(57, 255, 20, 0.1) 50%, rgba(57, 255, 20, 0.05) 70%, transparent 71%);
-            pointer-events: none;
-        }
-
-        .job-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 10px 35px var(--light-green-glow);
-            border-left-color: #50FF30; /* Even brighter on hover */
-        }
-        .job-card h3 {
-            color: var(--text-primary);
-            margin-top: 0;
-            font-size: 1.5em;
-            border-bottom: 1px solid rgba(57,255,20,0.4);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-        }
-        .job-card ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .job-card ul li::before {
-            content: "»";
-            color: var(--bright-green);
-            margin-right: 10px;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-
-        .vision-section {
-            padding: 80px 0;
-            /* Placeholder for a dark, green-tinted tech/space background */
-            background: url('https://images.pexels.com/photos/2150/sky-space-dark-stars.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center; /* Example: Dark Stars */
-            background-size: cover;
-            background-attachment: fixed;
-            position: relative;
-        }
-        .vision-section::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.88); /* Very dark overlay */
-        }
-        .vision-section .container {
-            position: relative;
-            z-index: 1;
-        }
-        .vision-section .vision-quote {
-            font-size: 1.8em;
-            font-weight: bold;
-            text-align: center;
-            color: var(--text-primary);
-            padding: 25px;
-            background: rgba(0, 40, 10, 0.4); /* Dark green tinted bg */
-            border: 1px solid rgba(57,255,20,0.5);
-            border-radius: 8px;
-            margin-bottom: 25px;
-            text-shadow: 0 0 12px var(--medium-green-glow);
-        }
-        .vision-section p {
-            text-align: center;
-            font-size: 1.2em;
-            color: var(--text-secondary);
-        }
-
-        .join-us-section {
-            padding: 70px 0;
-            background-color: var(--near-black-bg);
-            text-align: center;
-        }
-        .join-us-section .contact-info p {
-            margin-bottom: 18px;
-            font-size: 1.15em;
-        }
-        .join-us-section .contact-info strong {
-            color: var(--bright-green);
-            font-size: 1.2em;
-        }
-        .join-us-section .contact-info a {
-            display: inline-block;
-            margin-top: 5px;
-            word-break: break-all;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px 0;
-            background-color: var(--black-bg);
-            border-top: 1px solid var(--bright-green);
-            font-size: 0.9em;
-        }
-        footer p { color: #777; }
-
-
-        /* Animations (mostly unchanged) */
-        @keyframes fadeInDownHeavy {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUpLight {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Pulse for CTA button can remain or be adjusted for new green */
-        @keyframes pulseGreen {
-            0% { transform: scale(1); box-shadow: 0 5px 20px var(--light-green-glow); }
-            50% { transform: scale(1.03); box-shadow: 0 8px 30px var(--medium-green-glow); }
-            100% { transform: scale(1); box-shadow: 0 5px 20px var(--light-green-glow); }
-        }
-        .cta-button { animation: pulseGreen 2.5s infinite; }
-
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1, .hero-content .company-name { font-size: 2.5em; } /* Adjusted for larger base */
-            .hero-content .tagline { font-size: 1.3em; }
-            h2 { font-size: 1.7em; }
-            .vision-section .vision-quote { font-size: 1.4em; }
-            .loader-text { font-size: 1.8em;}
-            .job-card { padding: 20px; }
-            .section-image { max-width: 90%; margin: 30px auto;}
-        }
-         @media (max-width: 480px) {
-            h1, .hero-content .company-name { font-size: 2.0em; } /* Adjusted */
-            .hero-content .tagline { font-size: 1.1em; }
-            .cta-button { padding: 12px 25px; font-size: 1em;}
-            .loader-text { font-size: 1.5em;}
-        }
-
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杭州零界人工智能科技有限公司 - 加入我们，用AI改写金融未来</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- 引入粒子库、动画库等 -->
 </head>
 <body>
 
-    <div id="star-loader">
-        <div id="particles-js-loader"></div>
-        <div class="loader-content">
-            <div class="loader-text">杭州零界人工智能</div>
-        </div>
+    <!-- 1. 开场动画层 -->
+    <div id="intro-animation-overlay">
+        <!-- 星空、汇聚动画 -->
+        <div id="star-particles"></div>
+        <div id="converging-sphere"></div>
     </div>
 
-    <section class="hero-section">
-        <video autoplay muted loop playsinline id="hero-video">
-            <!-- Placeholder Video - find one with dark bg and green tech elements -->
-            <source src="https://videos.pexels.com/video-files/8570364/8570364-hd_1920_1080_30fps.mp4" type="video/mp4">
-            您的浏览器不支持 HTML5 video 标签。
-        </video>
-        <div class="hero-content">
-            <div class="company-name">杭州零界人工智能科技有限公司</div>
-            <div class="tagline">加入我们，用AI定义金融系统的演化逻辑</div>
-            <a href="#jobs-section" class="cta-button">探索未来 &raquo;</a>
-        </div>
-    </section>
+    <!-- 主内容 -->
+    <div id="page-wrapper" style="display:none;"> <!-- 初始隐藏，动画后显示 -->
 
-    <section class="about-us">
-        <div class="container">
-            <h2>我们是谁？</h2>
-            <!-- Placeholder image - replace with relevant AI/Data/Finance themed image -->
-            <img src="https://images.pexels.com/photos/593158/pexels-photo-593158.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="AI Financial System Concept" class="section-image">
-            <p><strong>杭州零界人工智能科技有限公司 (SingularityX Evolution)</strong> 致力于构建基于 <span class="highlight">加速回报定律</span> 的尖端AI驱动量化交易系统。</p>
-            <p>我们的宏伟蓝图是打造一个集：</p>
-            <ul>
-                <li>策略自动生成与持续进化能力</li>
-                <li>智能体级别的高维博弈与自适应部署架构</li>
-                <li>为实盘执行优化的高频/中频交易核心引擎</li>
-                <li>具备长期自我演化潜能的金融智能生态系统</li>
-            </ul>
-            <p class="mission-statement">我们不满足于创造工具，我们正在孕育一个“<span class="highlight">不断超越的金融智能生命</span>”。</p>
-        </div>
-    </section>
-
-    <section class="jobs-section" id="jobs-section">
-        <div class="container">
-            <h2>热招精英</h2>
-            <!-- Job cards as before -->
-            <div class="job-card">
-                <h3>强化学习研究工程师（策略演化方向）</h3>
-                <ul>
-                    <li>主导构建自博弈、AlphaZero式智能体演化框架</li>
-                    <li>深度理解并应用 PPO/SAC/DDPG/Evolutionary Search 等前沿算法</li>
-                    <li>具备 RLlib/Stable Baselines3/PyTorch 等框架实战经验者优先</li>
-                </ul>
+        <!-- 2. Hero区域 -->
+        <header id="hero-section">
+            <video autoplay loop muted playsinline poster="fallback-image.jpg" id="hero-video">
+                <source src="your-tech-video.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+            <div class="hero-content">
+                <h1>杭州零界人工智能科技有限公司</h1>
+                <p class="slogan">用AI改写金融系统的演化逻辑.</p>
+                <!-- <a href="#who-we-are" class="cta-button">探索奇点 ></a> -->
             </div>
-            <div class="job-card">
-                <h3>DevOps/交易系统架构工程师</h3>
-                <ul>
-                    <li>设计并实现GPU集群训练调度与超低延迟实盘执行系统</li>
-                    <li>精通 Docker/Kubernetes 等容器化技术与微服务架构</li>
-                    <li>具备交易所API接入及高可用、高并发系统构建经验者优先</li>
-                </ul>
-            </div>
-            <div class="job-card">
-                <h3>AI产品经理/项目协调官(TPM)</h3>
-                <ul>
-                    <li>驱动策略引擎与执行系统的高效协同开发与迭代</li>
-                    <li>深刻洞察AI项目生命周期，熟悉量化金融业务场景</li>
-                    <li>担当CEO/CTO的技术参谋与跨团队沟通核心</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        </header>
 
-    <section class="vision-section">
-        <!-- Background image is set in CSS. Consider adding a smaller foreground image if needed -->
-        <!-- <img src="YOUR_FOREGROUND_VISION_IMAGE.png" alt="Future Vision" class="section-image"> -->
-        <div class="container">
-            <h2>我们的愿景</h2>
-            <div class="vision-quote">“铸造演化速率超越市场适应边界的智能金融生态”</div>
-            <p>我们坚信，未来金融的法则，将由AI自主编织，而非人力设定。</p>
-            <p>我们正倾力打造此“AI金融生命体”，赋予其学习、博弈、适应乃至盈利的本能。</p>
-        </div>
-    </section>
+        <main>
+            <!-- 3. 我们是谁？ -->
+            <section id="who-we-are" class="content-section">
+                <h2>我们是谁？<span class="en-subtitle">WHO WE ARE</span></h2>
+                <p>杭州零界人工智能科技有限公司 (SingularityX Evolution) 致力于...</p>
+                <p class="highlight-quote">“我们不是在制造工具，而是在建造一个‘自我成长的金融生命体’。”</p>
+            </section>
 
-    <section class="join-us-section" id="join-us-section">
-        <div class="container">
-            <h2>加入我们，共创非凡</h2>
-            <div class="contact-info">
-                <p><strong>简历投递邮箱 (邮件主题：姓名+应聘岗位):</strong></p>
-                <p><a href="mailto:hanxiaoxuan@wereen.com">hanxiaoxuan@wereen.com</a></p>
-                <br>
-                <p><strong>联系人:</strong></p>
-                <p>韩女士: <a href="tel:15275423180">15275423180</a></p>
-                <p>王女士: <a href="tel:18663979512">18663979512</a></p>
-                <br>
-                <p><strong>联系电话:</strong></p>
-                <p><a href="tel:0532-55673088">0532-55673088</a></p>
-                <br>
-                <p><em>(官方网站 singularity.ai 即将震撼上线，敬请期待)</em></p>
-            </div>
-        </div>
-    </section>
+            <!-- 4. 我们的愿景 -->
+            <section id="our-vision" class="content-section">
+                <h2>我们的愿景 <span class="en-subtitle">OUR VISION</span></h2>
+                <blockquote class="vision-quote">“构建一个演化速度超过市场适应速度的智能体金融系统”</blockquote>
+                <p>我们坚信，未来的金融不是人设规则，而是 <strong>AI设法则</strong>...</p>
+            </section>
 
-    <footer>
-        <p>&copy; 2024 杭州零界人工智能科技有限公司. 版权所有. AI Redefines Finance.</p>
-    </footer>
+            <!-- 5. 热招岗位 -->
+            <section id="join-us" class="content-section">
+                <h2>加入我们 <span class="en-subtitle">JOIN THE EVOLUTION</span></h2>
+                <div class="job-postings">
+                    <article class="job-card">
+                        <h3>强化学习研究工程师（策略演化方向）</h3>
+                        <p><strong>职责：</strong>构建自博弈、AlphaZero式智能体演化系统。</p>
+                        <p><strong>技能：</strong>PPO/SAC/DDPG/Evolutionary Search, RLlib/Stable Baselines3/PyTorch。</p>
+                    </article>
+                    <!-- 更多岗位 -->
+                </div>
+            </section>
 
-    <script>
-        const loader = document.getElementById('star-loader');
+            <!-- 6. 实力后盾 -->
+            <section id="our-backing" class="content-section">
+                <h2>坚实后盾 <span class="en-subtitle">OUR BACKING</span></h2>
+                <p>本公司背靠青岛威瑞富泰能源有限公司和威瑞投资（青岛）有限公司...</p>
+                <!-- 可选：公司Logo -->
+            </section>
 
-        function hideLoader() {
-            if (loader) {
-                loader.classList.add('hidden');
-                // Optional: Ensure body is scrollable once loader is gone
-                // document.body.style.overflowY = 'auto';
-            }
-        }
+            <!-- 7. 联系我们 -->
+            <section id="apply-now" class="content-section">
+                <h2>立即申请 <span class="en-subtitle">APPLY NOW</span></h2>
+                <div class="contact-info">
+                    <p><strong>简历投递 (应急):</strong> <a href="mailto:hanxiaoxuan@wereen.com">hanxiaoxuan@wereen.com</a> (邮件主题: 姓名 + 应聘岗位)</p>
+                    <p><strong>实习咨询:</strong> 韩女士: <a href="tel:15275423180">15275423180</a> | 王女士: <a href="tel:18663979512">18663979512</a></p>
+                    <p><strong>公司电话:</strong> <a href="tel:053255673088">0532-55673088</a></p>
+                    <p><strong>官方网站:</strong> <a href="https://singularity.ai" target="_blank">https://singularity.ai</a> (上线中)</p>
+                </div>
+            </section>
+        </main>
 
-        // Click to skip intro
-        if (loader) {
-            loader.addEventListener('click', hideLoader);
-        }
+        <!-- 8. 页脚 -->
+        <footer id="page-footer">
+            <p>© 2023-2024 杭州零界人工智能科技有限公司. All Rights Reserved.</p>
+        </footer>
+    </div>
 
-        window.addEventListener('load', () => {
-            // Initialize particles.js for the loader
-            if (window.particlesJS && loader && !loader.classList.contains('hidden')) { // Check if not already hidden by click
-                particlesJS('particles-js-loader', {
-                    "particles": {
-                        "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
-                        "color": { "value": getComputedStyle(document.documentElement).getPropertyValue('--bright-green').trim() }, // Use CSS var
-                        "shape": { "type": "circle" },
-                        "opacity": { "value": 0.8, "random": true, "anim": { "enable": true, "speed": 0.5, "opacity_min": 0.2, "sync": false } },
-                        "size": { "value": 2.5, "random": true },
-                        "line_linked": { "enable": false },
-                        "move": {
-                            "enable": true, "speed": 2, "direction": "none", "random": true,
-                            "straight": false, "out_mode": "out", "bounce": false,
-                            // To simulate "rotation" or "condensation" in 1s, particles mainly need to be dynamic and then fade
-                            // A very slight "attract" could be faked, but it's complex with particles.js
-                            // For now, fast random movement should suffice for a quick burst
-                        }
-                    },
-                    "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": false }, "onclick": { "enable": false }, "resize": true } },
-                    "retina_detect": true
-                });
-            }
-
-            // Automatic hide after timeout (CSS transition handles the fade timing)
-            // This timeout should be slightly longer than the CSS transition delay + duration
-            setTimeout(hideLoader, 1200); // Matches 0.7s delay + 0.5s duration
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
-
+    <script src="scripts.js"></script> <!-- JS处理动画、交互 -->
 </body>
 </html>
