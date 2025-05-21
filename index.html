@@ -3,488 +3,734 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SingularityX Evolution - 零界演化科技</title>
+    <title>青岛威瑞富泰能源有限公司 - 智能驱动未来能源</title>
     <style>
+        /* --- Global Styles & Resets --- */
+        :root {
+            --primary-color: #0a2e5b; /* Deep Blue */
+            --secondary-color: #00c6ff; /* Bright Tech Blue */
+            --accent-color: #ff6f00; /* Energy Orange */
+            --text-color: #e0e0e0; /* Light Gray for text on dark backgrounds */
+            --bg-color-dark: #030e1a; /* Very Dark Blue/Black */
+            --bg-color-section: #081c33; /* Darker section background */
+            --card-bg-color: #0f2a4d;
+            --font-sans: 'Roboto', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #000;
-            color: #e0e0e0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-color-dark);
+            color: var(--text-color);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
-        
-        #intro-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 1000;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .content {
-            display: none;
-            padding: 20px;
-            max-width: 100%;
+
+        /* --- Utility Classes --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 100;
-        }
-        
-        header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-top: 2rem;
-        }
-        
-        .logo {
-            width: 150px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            background: linear-gradient(45deg, #4facfe, #00f2fe, #a6ffcb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem;
-            color: #4facfe;
-            border-bottom: 1px solid #333;
-            padding-bottom: 0.5rem;
-        }
-        
-        h3 {
-            font-size: 1.4rem;
-            margin: 1.5rem 0 0.5rem;
-            color: #a6ffcb;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-        
-        .highlight {
-            color: #00f2fe;
-            font-weight: bold;
-        }
-        
-        .vision {
-            background: rgba(0, 0, 30, 0.5);
-            padding: 1.5rem;
-            border-left: 4px solid #4facfe;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .vision p {
-            font-size: 1.2rem;
-            font-weight: 500;
-        }
-        
-        ul {
-            list-style-type: none;
-            margin-left: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        ul li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        ul li::before {
-            content: "›";
-            position: absolute;
-            left: 0;
-            color: #4facfe;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .job-position {
-            background: rgba(0, 20, 40, 0.5);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            border: 1px solid #1a3a5a;
-        }
-        
-        .contact {
-            background: rgba(0, 30, 60, 0.6);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-            border: 1px solid #284a6c;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-        
-        .contact-icon {
-            margin-right: 0.8rem;
-            color: #4facfe;
-            font-size: 1.2rem;
-        }
-        
-        #stars-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
-            color: #000;
-            font-weight: bold;
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            margin-top: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 7px 15px rgba(79, 172, 254, 0.3);
-        }
-
-        .architecture {
-            background: rgba(0, 15, 30, 0.5);
-            padding: 1rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 1rem;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        .card {
-            background: rgba(5, 15, 30, 0.7);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #1a3045;
-            backdrop-filter: blur(10px);
+            padding: 60px 20px;
         }
 
         .section-title {
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 5%;
+            background-color: rgba(3, 14, 26, 0.8); /* Slightly transparent dark bg */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            box-shadow: 0 2px 10px rgba(0, 198, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--text-color);
+            font-weight: 300;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent-color);
+        }
+        nav ul li a:hover::after, nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        /* Hamburger Menu for Mobile */
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            color: var(--secondary-color);
+            cursor: pointer;
+        }
+
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-color-dark) 70%),
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1000&q=60') no-repeat center center/cover; /* Placeholder image */
+            background-blend-mode: multiply; /* For techy overlay */
+            overflow: hidden; /* For particle canvas */
+        }
+        
+        #particles-js { /* Placeholder for particles.js canvas */
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .hero-content {
+            z-index: 1; /* Above particles */
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
+        }
+         #hero h1 .company-name {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            font-weight: 400;
+         }
+
+
+        #hero p {
+            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 50px; /* Pill shape */
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 111, 0, 0.4);
+        }
+
+        .cta-button:hover {
+            background-color: #ff8f33; /* Lighter orange */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.6);
+        }
+
+        /* --- About Us Section --- */
+        #about {
+            background-color: var(--bg-color-section);
+        }
+        #about .container {
             display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
+            gap: 40px;
         }
-
-        .section-title::before,
-        .section-title::after {
-            content: "";
+        #about .about-text {
             flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #4facfe, transparent);
+        }
+        #about .about-image-placeholder { /* Placeholder for a dynamic/3D graphic */
+            flex: 0 0 40%;
+            height: 300px;
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--bg-color-dark);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
+            /* Ideally, replace with an actual image or 3D render */
+        }
+         #about p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
         }
 
-        .section-title h2 {
-            margin: 0 1rem;
-            border: none;
-            white-space: nowrap;
+        /* --- Core Businesses Section --- */
+        #core-businesses {
+            background-color: var(--bg-color-dark); /* Alternating background */
         }
+        .business-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .business-card {
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--secondary-color);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 198, 255, 0.2);
+        }
+        .business-card h3 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        .business-card p {
+            font-size: 1rem;
+            color: #b0c4de; /* Lighter text for cards */
+        }
+        .business-card .icon-placeholder { /* Placeholder for icons */
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        /* --- AI Empowerment Section --- */
+        #ai-empowerment {
+            background-color: var(--bg-color-section);
+            text-align: center;
+        }
+        #ai-empowerment p {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            font-size: 1.1rem;
+        }
+        .ai-visual-placeholder { /* Placeholder for AI data visualization graphic */
+            height: 350px;
+            background: radial-gradient(circle, var(--primary-color) 20%, transparent 70%), 
+                        repeating-linear-gradient(45deg, rgba(0,198,255,0.05), rgba(0,198,255,0.05) 10px, transparent 10px, transparent 20px);
+            border-radius: 10px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+        }
+
+        /* --- Global Network Section --- */
+        #global-network {
+            background-color: var(--bg-color-dark);
+        }
+        .network-content {
+            text-align: center;
+        }
+        .map-placeholder { /* Placeholder for interactive map */
+            height: 400px;
+            background: var(--card-bg-color) url('https://i.stack.imgur.com/7S5Sj.png') no-repeat center center/contain; /* Placeholder simple map image */
+            border-radius: 10px;
+            margin: 30px auto;
+            border: 1px solid var(--primary-color);
+            max-width: 800px;
+        }
+        .partners-list {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #b0c4de;
+        }
+        .partners-list strong {
+            color: var(--secondary-color);
+        }
+
+        /* --- Careers Section --- */
+        #careers {
+             background-color: var(--bg-color-section);
+        }
+        .job-listings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .job-card {
+            background-color: var(--card-bg-color);
+            padding: 25px;
+            border-radius: 8px;
+            border-bottom: 4px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+        .job-card:hover {
+            transform: scale(1.03);
+        }
+        .job-card h4 {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        .job-card p {
+            font-size: 0.95rem;
+            color: #b0c4de;
+            margin-bottom: 15px;
+        }
+        .apply-button {
+            display: inline-block;
+            padding: 8px 18px;
+            background-color: var(--accent-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        .apply-button:hover {
+            background-color: #ff8f33;
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            background-color: var(--bg-color-dark);
+            text-align: center;
+        }
+        #contact p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        #contact a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        #contact a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--bg-color-dark);
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--primary-color);
+        }
+        
+        /* --- Scroll Animations (Example with a simple fade-in) --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsiveness --- */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.2rem;
+            }
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+             #hero h1 .company-name {
+                font-size: 1.5rem;
+             }
+            #hero p {
+                font-size: 1.1rem;
+            }
+            .container {
+                padding: 40px 15px;
+            }
+            #about .container {
+                flex-direction: column;
+            }
+            #about .about-image-placeholder {
+                width: 80%;
+                margin-top: 30px;
+                height: 200px;
+            }
+            nav ul {
+                display: none; /* Hide on mobile by default */
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px; /* Adjust based on header height */
+                left: 0;
+                background-color: rgba(3, 14, 26, 0.95);
+                padding: 10px 0;
+            }
+            nav ul.active {
+                display: flex; /* Show when active */
+            }
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            .menu-toggle {
+                display: block; /* Show hamburger */
+            }
+        }
+
     </style>
+    <!-- Font Awesome for Icons (optional, or use SVGs) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Example) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <div id="stars-container"></div>
-    
-    <div id="intro-animation">
-        <canvas id="intro-canvas" width="300" height="300"></canvas>
-    </div>
-    
-    <div class="content">
-        <header>
-            <img src="/api/placeholder/150/150" alt="SingularityX Logo" class="logo">
-            <h1>SingularityX Evolution</h1>
-            <p class="highlight">杭州零界人工智能科技有限公司</p>
-        </header>
-        
-        <div class="vision">
-            <p>加入我们，用<span class="highlight">AI改写金融系统的演化逻辑</span></p>
-        </div>
-        
-        <div class="card">
-            <div class="section-title">
-                <h2>我们是谁？</h2>
+
+    <header>
+        <nav>
+            <a href="#hero" class="logo">青岛威瑞富泰<span>能源</span></a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
             </div>
-            <p><span class="highlight">SingularityX Evolution Ltd.(零界演化科技)</span>正在构建一套以<span class="highlight">加速回报定律</span>为基础的AI驱动量化交易系统，目标打造一个具备：</p>
-            <ul>
-                <li>策略自动生成与进化能力</li>
-                <li>智能体级别的博弈与部署结构</li>
-                <li>面向实盘执行的高频/中频交易引擎</li>
-                <li>长期可自演化的金融智能生态系统</li>
+            <ul class="nav-links">
+                <li><a href="#hero" class="active">首页</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#core-businesses">核心业务</a></li>
+                <li><a href="#ai-empowerment">AI赋能</a></li>
+                <li><a href="#global-network">全球网络</a></li>
+                <li><a href="#careers">加入我们</a></li>
+                <li><a href="#contact">联系方式</a></li>
             </ul>
-            <p>我们不是做工具，而是在建造一个<span class="highlight">"自我成长的金融生命体"</span>。</p>
-        </div>
-        
-        <div class="section-title">
-            <h2>热招岗位</h2>
-        </div>
-        
-        <div class="job-position">
-            <h3>1. 强化学习研究工程师（策略演化方向）</h3>
-            <ul>
-                <li>构建自博弈、AlphaZero式智能体演化系统</li>
-                <li>熟悉 PPO/SAC/DDPG/Evolutionary Search等算法</li>
-                <li>RLlib/Stable Baselines3/PyTorch 实战经验优先</li>
-            </ul>
-        </div>
-        
-        <div class="job-position">
-            <h3>2. DevOps/交易系统架构工程师</h3>
-            <ul>
-                <li>搭建GPU训练调度与低延迟实盘执行系统</li>
-                <li>精通容器化部署(Docker/Kubernetes)</li>
-                <li>有交易所接入与高可用系统经验者优先</li>
-            </ul>
-        </div>
-        
-        <div class="job-position">
-            <h3>3. AI产品经理/项目协调官(TPM)</h3>
-            <ul>
-                <li>管理策略引擎与执行系统协同开发</li>
-                <li>熟悉AI项目流程与量化金融语境</li>
-                <li>可作为CEO/CTO技术接口管理人</li>
-            </ul>
-        </div>
-        
-        <div class="architecture card">
-            <div class="section-title">
-                <h2>我们的架构</h2>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div id="particles-js"></div> <!-- For particle effects library -->
+            <div class="hero-content">
+                <h1 data-aos="fade-down" data-aos-delay="200">
+                    <span class="company-name">青岛威瑞富泰能源有限公司</span>
+                    智能驱动 <span class="highlight">未来能源</span>
+                </h1>
+                <p data-aos="fade-up" data-aos-delay="400">融合尖端AI与深厚行业经验，重塑能源投资与供应链管理新纪元。</p>
+                <a href="#about" class="cta-button" data-aos="zoom-in" data-aos-delay="600">探索更多</a>
             </div>
-            <p>CTO</p>
-            <ul>
-                <li>策略硏究组(RL+自博弈)：
-                    <ul>
-                        <li>强化学习研究员 x 2</li>
-                        <li>智能体仿真开发 x 1</li>
-                    </ul>
-                </li>
-                <li>策略工程组(量化执行)：
-                    <ul>
-                        <li>Alpha策略工程师 x 2</li>
-                        <li>数据因子工程师 x 1</li>
-                    </ul>
-                </li>
-                <li>系统架构组(实盘执行)：
-                    <ul>
-                        <li>Devops/架构师 x 1</li>
-                        <li>后端开发 x 1</li>
-                    </ul>
-                </li>
-                <li>AI项目协调/产品 x 1</li>
-            </ul>
-        </div>
-        
-        <div class="vision card">
-            <div class="section-title">
-                <h2>我们的愿景</h2>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="fade-in-section">
+            <div class="container">
+                <div class="about-text">
+                    <h2 class="section-title">关于我们 <span style="font-size: 1.5rem; color: #aaa; display:inline;">ABOUT US</span></h2>
+                    <p>青岛威瑞富泰能源有限公司，座落于风景秀丽的沿海开放城市——中国青岛，是一家专注于大宗商品贸易、能源产品、化工品、仓储物流及全球供应链管理多元化企业。</p>
+                    <p>近年来，公司积极结合<span class="highlight">人工智能（AI）技术</span>，构建智能化商品投资与供应链服务体系，为客户提供更加精准、高效的决策支持和资源整合服务。</p>
+                     <p>公司凭借独特的战略眼光与卓越的运营能力，形成了三大核心业务板块：商品供应链、商品资源投资、智能化量化交易，并与国际化运营团队、专业知识及物流服务融合，借助贸易融资和智能技术，赋能业务、促进行业数字化，满足客户多样需求。</p>
+                </div>
+                <div class="about-image-placeholder">
+                    <span>AI & Energy Synergy</span>
+                </div>
             </div>
-            <p class="highlight">"构建一个演化速度超过市场适应速度的智能体金融系统"</p>
-            <p>我们相信，未来的金融不是人设规则，而是AI设法则。</p>
-            <p>我们在打造这个"AI金融生命体"，让它学会成长、对抗、适应与赚钱。</p>
-        </div>
-        
-        <div class="contact">
-            <div class="section-title">
-                <h2>加入我们</h2>
+        </section>
+
+        <!-- Core Businesses Section -->
+        <section id="core-businesses" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">核心业务 <span style="font-size: 1.5rem; color: #aaa;">CORE BUSINESSES</span></h2>
+                <div class="business-cards">
+                    <div class="business-card">
+                        <div class="icon-placeholder"><i class="fas fa-cubes-stacked"></i></div>
+                        <h3>商品供应链</h3>
+                        <p>主营煤炭、硫磺、锰矿、铁矿等。构建完备高效的供应链体系，从采购、运输到销售，全球优质供应商，一站式解决方案。</p>
+                    </div>
+                    <div class="business-card">
+                        <div class="icon-placeholder"><i class="fas fa-chart-line"></i></div>
+                        <h3>商品资源投资</h3>
+                        <p>聚焦矿产与农业领域。专业勘探开发海外潜力矿产，关注现代农业发展与矿山复垦，推动产业升级。</p>
+                    </div>
+                    <div class="business-card">
+                         <div class="icon-placeholder"><i class="fas fa-brain"></i></div>
+                        <h3>智能化量化交易</h3>
+                        <p>依托AI团队，运用先进算法与大数据分析，构建精准量化交易模型，实现自动化、智能化交易决策，提升投资回报率。</p>
+                    </div>
+                </div>
             </div>
-            <p>求职者请将简历发送至：<span class="highlight">hanxiaoxuan@wereen.com</span>（姓名+应聘岗位）</p>
-            
-            <div class="contact-item">
-                <span class="contact-icon">✉</span>
-                <p>实习联系：韩女士 15275423180</p>
+        </section>
+
+        <!-- AI Empowerment Section -->
+        <section id="ai-empowerment" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">AI赋能 <span style="font-size: 1.5rem; color: #aaa;">AI EMPOWERMENT</span></h2>
+                <p>公司通过<span class="highlight">技术创新</span>引领，将人工智能融入商品投资和供应链管理，通过技术赋能提升行业竞争力。构建智能化商品投资与供应链服务体系，为客户提供更加精准、高效的决策支持和资源整合服务。</p>
+                <div class="ai-visual-placeholder">
+                    <span>AI驱动决策优化</span>
+                </div>
             </div>
-            <div class="contact-item">
-                <span class="contact-icon">✉</span>
-                <p>实习联系：王女士 18663979512</p>
+        </section>
+
+        <!-- Global Network Section -->
+        <section id="global-network" class="fade-in-section">
+            <div class="container network-content">
+                <h2 class="section-title">全球网络与伙伴 <span style="font-size: 1.5rem; color: #aaa;">GLOBAL NETWORK</span></h2>
+                <p>业务覆盖北美、东南亚、澳大利亚、中东、日韩、俄罗斯等地。与众多世界500强、上市公司长期合作。</p>
+                <div class="map-placeholder">
+                    <!-- Placeholder for an interactive map or a static image of a world map with highlighted regions -->
+                </div>
+                <p class="partners-list">
+                    主要买家: <span class="highlight">Delong Steel, Donghai Steel, Jiuyang Steel, Hebei Steel, Sinochem International</span> 等.
+                    <br>
+                    主要供货商: <span class="highlight">Mechel, Sibanthractie Overseas AG, Peabody, Bremer, Jellinbah, Yancoal, BHP Billiton, Xcoal</span> 等.
+                </p>
+                 <p style="margin-top: 20px;">公司利用毗邻港口优越的地理位置，以山东、河北及长江流域为主要市场，大力发展战略贸易伙伴，维持长期合作关系。</p>
             </div>
-            <div class="contact-item">
-                <span class="contact-icon">☎</span>
-                <p>联系电话：0532-55673088</p>
+        </section>
+
+        <!-- Careers Section -->
+        <section id="careers" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">加入我们 <span style="font-size: 1.5rem; color: #aaa;">JOIN US</span></h2>
+                <p style="text-align: center; max-width: 700px; margin: -20px auto 40px auto;">我们正在寻找对人工智能、量化交易和能源行业充满热情的顶尖人才，共同构建智能化商品投资与供应链的未来。</p>
+                <div class="job-listings">
+                    <div class="job-card">
+                        <h4>AI应用工程师</h4>
+                        <p>负责将AI技术应用于实际业务场景，优化供应链与投资决策。</p>
+                        <a href="mailto:hr@qdwfenergy.com?subject=Application for AI Application Engineer" class="apply-button">申请职位</a>
+                    </div>
+                    <div class="job-card">
+                        <h4>量化开发工程师</h4>
+                        <p>设计、开发和测试量化交易策略及系统。</p>
+                        <a href="mailto:hr@qdwfenergy.com?subject=Application for Quantitative Development Engineer" class="apply-button">申请职位</a>
+                    </div>
+                    <div class="job-card">
+                        <h4>人工智能算法工程师</h4>
+                        <p>研究、实现和优化机器学习、深度学习等AI核心算法。</p>
+                        <a href="mailto:hr@qdwfenergy.com?subject=Application for AI Algorithm Engineer" class="apply-button">申请职位</a>
+                    </div>
+                    <div class="job-card">
+                        <h4>大模型应用工程师</h4>
+                        <p>探索和应用大型语言模型（LLM）等技术于公司业务，提升智能化水平。</p>
+                        <a href="mailto:hr@qdwfenergy.com?subject=Application for Large Model Application Engineer" class="apply-button">申请职位</a>
+                    </div>
+                </div>
             </div>
-            
-            <a href="mailto:hanxiaoxuan@wereen.com" class="cta-button">立即申请加入</a>
-        </div>
-        
-        <div class="footer">
-            <p>© 2025 杭州零界人工智能科技有限公司</p>
-        </div>
-    </div>
-    
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="fade-in-section">
+            <div class="container">
+                <h2 class="section-title">联系我们 <span style="font-size: 1.5rem; color: #aaa;">CONTACT US</span></h2>
+                <p>青岛威瑞富泰能源有限公司</p>
+                <p>地址：中国青岛市 [请补充详细地址]</p>
+                <p>电话：<a href="tel:+86-XXX-XXXXXXX">+86-XXX-XXXXXXX</a> [请补充电话]</p>
+                <p>邮箱：<a href="mailto:info@qdwfenergy.com">info@qdwfenergy.com</a> [请补充邮箱]</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> 青岛威瑞富泰能源有限公司. All Rights Reserved.</p>
+        <p>技术与创新，驱动能源未来</p>
+    </footer>
+
+    <!-- For Particle Effects (example: particles.js) -->
+    <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
+    <!-- For Scroll Animations (example: AOS - Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
-        // Stars background
-        function createStars() {
-            const starsContainer = document.getElementById('stars-container');
-            const starCount = window.innerWidth * 0.15; // Responsive star count
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                // Random star properties
-                const size = Math.random() * 2;
-                const opacity = Math.random() * 0.8 + 0.2;
-                
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.opacity = opacity;
-                star.style.left = Math.random() * 100 + 'vw';
-                star.style.top = Math.random() * 100 + 'vh';
-                star.style.animationDelay = Math.random() * 2 + 's';
-                
-                starsContainer.appendChild(star);
-            }
-        }
-        
-        // Intro animation
-        function initIntroAnimation() {
-            const canvas = document.getElementById('intro-canvas');
-            const ctx = canvas.getContext('2d');
-            const stars = [];
-            const starCount = 300;
-            const centerX = canvas.width / 2;
-            const centerY = canvas.height / 2;
-            let animationProgress = 0;
-            
-            // Create stars
-            for (let i = 0; i < starCount; i++) {
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * canvas.width * 1.5;
-                const size = Math.random() * 2 + 0.5;
-                
-                stars.push({
-                    x: centerX + Math.cos(angle) * distance,
-                    y: centerY + Math.sin(angle) * distance,
-                    size: size,
-                    speed: 0.02 + Math.random() * 0.03,
-                    opacity: Math.random() * 0.5 + 0.5
-                });
-            }
-            
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                // Progress the animation
-                animationProgress += 0.01;
-                if (animationProgress > 1) {
-                    // End animation
-                    document.getElementById('intro-animation').style.display = 'none';
-                    document.querySelector('.content').style.display = 'block';
-                    return;
-                }
-                
-                // Draw each star
-                stars.forEach(star => {
-                    const progress = Math.min(animationProgress * 1.2, 1);
-                    
-                    // Star converging effect
-                    const currentX = star.x - (star.x - centerX) * progress * 1.2;
-                    const currentY = star.y - (star.y - centerY) * progress * 1.2;
-                    
-                    // Final formation effect
-                    let finalSize = star.size;
-                    let finalOpacity = star.opacity;
-                    
-                    if (progress > 0.8) {
-                        const formationProgress = (progress - 0.8) * 5;
-                        finalOpacity = star.opacity * (1 - formationProgress);
-                    }
-                    
-                    // Draw star
-                    ctx.beginPath();
-                    ctx.arc(currentX, currentY, finalSize, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${finalOpacity})`;
-                    ctx.fill();
-                });
-                
-                // Draw forming logo at the end
-                if (animationProgress > 0.8) {
-                    const logoProgress = (animationProgress - 0.8) * 5;
-                    ctx.beginPath();
-                    
-                    // Drawing "X" logo
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${logoProgress})`;
-                    ctx.lineWidth = 4;
-                    
-                    // First diagonal line
-                    ctx.moveTo(centerX - 40, centerY - 40);
-                    ctx.lineTo(centerX + 40, centerY + 40);
-                    
-                    // Second diagonal line
-                    ctx.moveTo(centerX - 40, centerY + 40);
-                    ctx.lineTo(centerX + 40, centerY - 40);
-                    
-                    ctx.stroke();
-                }
-                
-                requestAnimationFrame(animate);
-            }
-            
-            animate();
-        }
-        
-        // Initialize everything when document is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            createStars();
-            initIntroAnimation();
+        // --- AOS Initialization ---
+        AOS.init({
+            duration: 800, // values from 0 to 3000, with step 50ms
+            once: true, // whether animation should happen only once - while scrolling down
         });
+
+        // --- Current Year for Footer ---
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Optional: Change hamburger to X icon
+            const icon = mobileMenu.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // --- Close mobile menu when a link is clicked ---
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const icon = mobileMenu.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // --- Active Nav Link on Scroll ---
+        const sections = document.querySelectorAll('main section');
+        const navLi = document.querySelectorAll('nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Adjust offset if header is fixed
+                if (pageYOffset >= (sectionTop - sectionHeight / 3 - document.querySelector('header').offsetHeight)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').substring(1) === current) {
+                    a.classList.add('active');
+                }
+            });
+            // Ensure "首页" is active when at the very top
+            if (pageYOffset < sections[0].offsetTop - document.querySelector('header').offsetHeight) {
+                 navLi.forEach(a => a.classList.remove('active'));
+                 document.querySelector('nav ul li a[href="#hero"]').classList.add('active');
+            }
+        });
+
+
+        // --- Simple Fade-in on Scroll (Intersection Observer) ---
+        const fadeInSections = document.querySelectorAll('.fade-in-section');
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Optional: Animate only once
+                }
+            });
+        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+        fadeInSections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // --- Placeholder for Particles.js ---
+        /*
+        if (document.getElementById('particles-js')) {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#00c6ff" },
+                    "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+                    "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                    "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#00c6ff", "opacity": 0.4, "width": 1 },
+                    "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
+                },
+                "retina_detect": true
+            });
+        }
+        */
+        // Note: To use particles.js, uncomment the script tag in <head> and this block.
+        // You'll need to download particles.js and host it or use a CDN.
+
     </script>
 </body>
 </html>
