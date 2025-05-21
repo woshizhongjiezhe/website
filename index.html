@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>青岛威瑞富泰能源有限公司 - 智能驱动未来能源</title>
+    <title>杭州零界人工智能科技有限公司 - AI改写金融未来</title>
     <style>
-        /* --- Global Styles & Resets --- */
+        /* --- CSS 基础重置与全局样式 --- */
         :root {
-            --primary-color: #0a2e5b; /* Deep Blue */
-            --secondary-color: #00c6ff; /* Bright Tech Blue */
-            --accent-color: #ff6f00; /* Energy Orange */
-            --text-color: #e0e0e0; /* Light Gray for text on dark backgrounds */
-            --bg-color-dark: #030e1a; /* Very Dark Blue/Black */
-            --bg-color-section: #081c33; /* Darker section background */
-            --card-bg-color: #0f2a4d;
-            --font-sans: 'Roboto', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+            --primary-black: #0A0A0A; /* 更深的黑 */
+            --primary-green: #00FF7F; /* 科技亮绿 */
+            --secondary-green: #39FF14; /* 另一种科技绿 */
+            --text-light: #E0E0E0;
+            --text-dark: #111;
+            --border-glow: rgba(0, 255, 127, 0.5);
         }
 
         * {
@@ -23,713 +21,486 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-color-dark);
-            color: var(--text-color);
+            font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif; /* 优先使用Roboto */
+            background-color: var(--primary-black);
+            color: var(--text-light);
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden; /* 防止横向滚动 */
         }
 
-        /* --- Utility Classes --- */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
+        /* --- 开场动画 --- */
+        #starfield-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--primary-black);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 这里需要JS配合实现星空动画和凝聚效果 */
+            /* 简化版：显示一个旋转的Logo或加载动画 */
+            /* 示例：用SVG或GIF模拟 */
+            /* background-image: url('placeholder-star-animation.gif'); */
+            /* background-size: cover; */
         }
-
-        .section-title {
-            font-size: 2.8rem;
-            color: var(--secondary-color);
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            padding-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .section-title::after {
-            content: '';
+        .star-particle { /* 伪代码，实际用JS生成和控制 */
             position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 2px;
-        }
-        
-        .highlight {
-            color: var(--accent-color);
-            font-weight: bold;
+            background: white;
+            border-radius: 50%;
+            /* JS控制大小、位置、动画 */
         }
 
-        /* --- Header & Navigation --- */
-        header {
+
+        /* --- 页面容器 --- */
+        .page-wrapper {
+            opacity: 0; /* 初始隐藏，动画结束后显示 */
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* --- 头部导航 (可选，极简) --- */
+        .main-nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+            padding: 15px 20px;
+            background: rgba(10, 10, 10, 0.7); /* 半透明背景 */
+            backdrop-filter: blur(5px); /* 毛玻璃效果 */
             z-index: 1000;
-            padding: 15px 5%;
-            background-color: rgba(3, 14, 26, 0.8); /* Slightly transparent dark bg */
-            backdrop-filter: blur(10px); /* Frosted glass effect */
-            box-shadow: 0 2px 10px rgba(0, 198, 255, 0.1);
-            transition: background-color 0.3s ease;
-        }
-
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1300px;
-            margin: 0 auto;
         }
-
-        .logo {
-            font-size: 1.8rem;
+        .main-nav .logo-text {
+            font-size: 1.2em;
             font-weight: bold;
-            color: var(--secondary-color);
+            color: var(--primary-green);
+        }
+        .main-nav a {
+            color: var(--text-light);
             text-decoration: none;
+            margin-left: 15px;
+            font-size: 0.9em;
         }
-        .logo span {
-            color: var(--text-color);
-            font-weight: 300;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
+        .main-nav a:hover {
+            color: var(--primary-green);
         }
 
-        nav ul li {
-            margin-left: 25px;
-        }
 
-        nav ul li a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 5px 0;
+        /* --- Hero 区域 --- */
+        .hero-section {
+            height: 100vh; /* 占据整个视口高度 */
             position: relative;
-            transition: color 0.3s ease;
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--accent-color);
-        }
-        nav ul li a:hover::after, nav ul li a.active::after {
-            width: 100%;
-        }
-        
-        /* Hamburger Menu for Mobile */
-        .menu-toggle {
-            display: none;
-            font-size: 2rem;
-            color: var(--secondary-color);
-            cursor: pointer;
-        }
-
-
-        /* --- Hero Section --- */
-        #hero {
-            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
-            position: relative;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-color-dark) 70%),
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1000&q=60') no-repeat center center/cover; /* Placeholder image */
-            background-blend-mode: multiply; /* For techy overlay */
-            overflow: hidden; /* For particle canvas */
+            padding: 20px;
+            overflow: hidden; /* 确保视频不溢出 */
         }
-        
-        #particles-js { /* Placeholder for particles.js canvas */
+
+        .hero-video-bg {
             position: absolute;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
+            object-fit: cover; /* 视频填满容器，可能会裁剪 */
+            transform: translate(-50%, -50%);
+            z-index: -1; /* 在内容下方 */
+            filter: brightness(0.4); /* 压暗视频，使文字更突出 */
         }
 
-        .hero-content {
-            z-index: 1; /* Above particles */
+        .hero-section .company-name {
+            font-size: 2.5em; /* 移动端可以适当减小 */
+            font-weight: bold;
+            color: #fff; /* 白色更突出于视频背景 */
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px var(--primary-green), 0 0 20px var(--primary-black);
+            animation: fadeInDown 1s ease-out 0.5s backwards; /* 动画效果 */
         }
 
-        #hero h1 {
-            font-size: 3.5rem;
-            color: #fff;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-shadow: 0 0 15px rgba(0, 198, 255, 0.7);
-        }
-         #hero h1 .company-name {
-            display: block;
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: var(--text-color);
-            font-weight: 400;
-         }
-
-
-        #hero p {
-            font-size: 1.4rem;
-            color: var(--text-color);
+        .hero-section .tagline {
+            font-size: 1.4em;
+            color: var(--primary-green);
             margin-bottom: 30px;
-            max-width: 700px;
+            font-weight: 500;
+            text-shadow: 0 0 8px var(--primary-black);
+            animation: fadeInUp 1s ease-out 1s backwards;
         }
 
         .cta-button {
             display: inline-block;
             padding: 12px 30px;
-            background-color: var(--accent-color);
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            border-radius: 50px; /* Pill shape */
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 111, 0, 0.4);
-        }
-
-        .cta-button:hover {
-            background-color: #ff8f33; /* Lighter orange */
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.6);
-        }
-
-        /* --- About Us Section --- */
-        #about {
-            background-color: var(--bg-color-section);
-        }
-        #about .container {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-        #about .about-text {
-            flex: 1;
-        }
-        #about .about-image-placeholder { /* Placeholder for a dynamic/3D graphic */
-            flex: 0 0 40%;
-            height: 300px;
-            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            color: var(--bg-color-dark);
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
-            /* Ideally, replace with an actual image or 3D render */
-        }
-         #about p {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        /* --- Core Businesses Section --- */
-        #core-businesses {
-            background-color: var(--bg-color-dark); /* Alternating background */
-        }
-        .business-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .business-card {
-            background-color: var(--card-bg-color);
-            padding: 30px;
-            border-radius: 10px;
-            border-left: 5px solid var(--secondary-color);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .business-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 198, 255, 0.2);
-        }
-        .business-card h3 {
-            font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin-bottom: 15px;
-        }
-        .business-card p {
-            font-size: 1rem;
-            color: #b0c4de; /* Lighter text for cards */
-        }
-        .business-card .icon-placeholder { /* Placeholder for icons */
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-        }
-
-        /* --- AI Empowerment Section --- */
-        #ai-empowerment {
-            background-color: var(--bg-color-section);
-            text-align: center;
-        }
-        #ai-empowerment p {
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-            font-size: 1.1rem;
-        }
-        .ai-visual-placeholder { /* Placeholder for AI data visualization graphic */
-            height: 350px;
-            background: radial-gradient(circle, var(--primary-color) 20%, transparent 70%), 
-                        repeating-linear-gradient(45deg, rgba(0,198,255,0.05), rgba(0,198,255,0.05) 10px, transparent 10px, transparent 20px);
-            border-radius: 10px;
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.8rem;
-            color: var(--secondary-color);
-            border: 1px solid var(--secondary-color);
-        }
-
-        /* --- Global Network Section --- */
-        #global-network {
-            background-color: var(--bg-color-dark);
-        }
-        .network-content {
-            text-align: center;
-        }
-        .map-placeholder { /* Placeholder for interactive map */
-            height: 400px;
-            background: var(--card-bg-color) url('https://i.stack.imgur.com/7S5Sj.png') no-repeat center center/contain; /* Placeholder simple map image */
-            border-radius: 10px;
-            margin: 30px auto;
-            border: 1px solid var(--primary-color);
-            max-width: 800px;
-        }
-        .partners-list {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #b0c4de;
-        }
-        .partners-list strong {
-            color: var(--secondary-color);
-        }
-
-        /* --- Careers Section --- */
-        #careers {
-             background-color: var(--bg-color-section);
-        }
-        .job-listings {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .job-card {
-            background-color: var(--card-bg-color);
-            padding: 25px;
-            border-radius: 8px;
-            border-bottom: 4px solid var(--accent-color);
-            transition: transform 0.3s ease;
-        }
-        .job-card:hover {
-            transform: scale(1.03);
-        }
-        .job-card h4 {
-            font-size: 1.4rem;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-        .job-card p {
-            font-size: 0.95rem;
-            color: #b0c4de;
-            margin-bottom: 15px;
-        }
-        .apply-button {
-            display: inline-block;
-            padding: 8px 18px;
-            background-color: var(--accent-color);
-            color: #fff;
+            background-color: var(--primary-green);
+            color: var(--primary-black);
+            font-size: 1.1em;
+            font-weight: bold;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid var(--primary-green);
+            animation: pulse 2s infinite 1.5s;
         }
-        .apply-button:hover {
-            background-color: #ff8f33;
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--border-glow), 0 0 30px var(--border-glow);
+            background-color: var(--secondary-green);
         }
 
-        /* --- Contact Section --- */
-        #contact {
-            background-color: var(--bg-color-dark);
+        /* --- 通用 Section 样式 --- */
+        .content-section {
+            padding: 60px 20px; /* 上下边距大一些 */
             text-align: center;
+            border-bottom: 1px solid rgba(0, 255, 127, 0.1); /* 微弱的绿色分割线 */
         }
-        #contact p {
-            font-size: 1.1rem;
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .content-section h2 {
+            font-size: 2em;
+            color: var(--primary-green);
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        .content-section h2::after { /* 标题下划线装饰 */
+            content: '';
+            display: block;
+            width: 60%;
+            height: 3px;
+            background: var(--secondary-green);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        .content-section p, .content-section ul {
+            font-size: 1.1em;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            max-width: 800px; /* 内容最大宽度，易读性 */
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left; /* 段落内容左对齐更易读 */
+        }
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content-section ul li {
+            padding-left: 25px;
+            position: relative;
             margin-bottom: 10px;
         }
-        #contact a {
-            color: var(--secondary-color);
-            text-decoration: none;
-        }
-        #contact a:hover {
-            color: var(--accent-color);
+        .content-section ul li::before {
+            content: '»'; /* 科技感列表符号 */
+            color: var(--primary-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
         }
 
-        /* --- Footer --- */
-        footer {
-            background-color: var(--bg-color-dark);
-            color: #aaa;
+        .highlight-text {
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+        .quote-text {
+            font-size: 1.3em;
+            font-style: italic;
+            color: var(--secondary-green);
+            margin: 30px auto;
+            padding: 15px;
+            border-left: 3px solid var(--primary-green);
+            background-color: rgba(0, 255, 127, 0.05);
+            max-width: 700px;
             text-align: center;
+        }
+
+        /* --- 岗位列表 --- */
+        .job-listing {
+            margin-bottom: 30px;
             padding: 20px;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.03); /* 微亮背景区分 */
+            border: 1px solid rgba(0, 255, 127, 0.2);
+            border-radius: 8px;
+            text-align: left;
         }
-        
-        /* --- Scroll Animations (Example with a simple fade-in) --- */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        .job-listing h3 {
+            font-size: 1.5em;
+            color: var(--secondary-green);
+            margin-bottom: 15px;
         }
-
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
+        .job-listing ul li::before {
+            content: '●'; /* 圆点符号 */
         }
 
-        /* --- Responsiveness --- */
+
+        /* --- 团队架构图 (简化文本表示) --- */
+        .team-structure-diagram {
+            font-family: 'Courier New', Courier, monospace; /* 代码字体 */
+            background-color: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid var(--border-glow);
+            white-space: pre-wrap; /* 保留换行和空格 */
+            text-align: left;
+            max-width: 100%;
+            overflow-x: auto; /* 如果内容过长，允许横向滚动 */
+            color: #b0f0c0; /* 淡绿色文字 */
+        }
+        .team-structure-diagram strong {
+            color: var(--primary-green);
+        }
+
+        /* --- 联系方式 --- */
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .contact-info .contact-person {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+
+        /* --- 页脚 --- */
+        .main-footer {
+            padding: 30px 20px;
+            text-align: center;
+            background-color: #050505; /* 比主背景略浅一点的黑 */
+            font-size: 0.9em;
+            color: #888;
+        }
+
+        /* --- 动画 --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 5px var(--border-glow), 0 0 10px var(--border-glow); }
+            50% { box-shadow: 0 0 15px var(--border-glow), 0 0 30px var(--border-glow); }
+            100% { box-shadow: 0 0 5px var(--border-glow), 0 0 10px var(--border-glow); }
+        }
+
+        /* --- 响应式调整 (示例) --- */
         @media (max-width: 768px) {
-            .section-title {
-                font-size: 2.2rem;
+            .hero-section .company-name {
+                font-size: 2em;
             }
-            #hero h1 {
-                font-size: 2.5rem;
+            .hero-section .tagline {
+                font-size: 1.2em;
             }
-             #hero h1 .company-name {
-                font-size: 1.5rem;
-             }
-            #hero p {
-                font-size: 1.1rem;
+            .content-section h2 {
+                font-size: 1.8em;
             }
-            .container {
-                padding: 40px 15px;
+            .content-section p, .content-section ul {
+                font-size: 1em;
             }
-            #about .container {
-                flex-direction: column;
-            }
-            #about .about-image-placeholder {
-                width: 80%;
-                margin-top: 30px;
-                height: 200px;
-            }
-            nav ul {
-                display: none; /* Hide on mobile by default */
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 60px; /* Adjust based on header height */
-                left: 0;
-                background-color: rgba(3, 14, 26, 0.95);
-                padding: 10px 0;
-            }
-            nav ul.active {
-                display: flex; /* Show when active */
-            }
-            nav ul li {
-                margin: 10px 0;
-                text-align: center;
-            }
-            .menu-toggle {
-                display: block; /* Show hamburger */
-            }
+            .main-nav { display: none; } /* 移动端可以简化或移除顶部固定导航，依赖滚动 */
         }
 
     </style>
-    <!-- Font Awesome for Icons (optional, or use SVGs) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts (Example) -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
-    <header>
-        <nav>
-            <a href="#hero" class="logo">青岛威瑞富泰<span>能源</span></a>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
+    <!-- 1. 开场星空动画 -->
+    <div id="starfield-loader">
+        <!-- 实际由JS生成和控制星空 -->
+        <!-- 可以放一个静态的SVG Logo作为fallback或在JS加载前显示 -->
+        <!-- <img src="placeholder-logo-animated.svg" alt="Loading Animation"> -->
+        <p style="color: var(--primary-green); font-size: 1.5em;">Initializing SingularityX Core...</p>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- (可选) 极简导航栏 -->
+        <nav class="main-nav">
+            <div class="logo-text">零界人工智能</div>
+            <div>
+                <a href="#about-us">我们是谁</a>
+                <a href="#positions">热招岗位</a>
+                <a href="#contact">加入我们</a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#hero" class="active">首页</a></li>
-                <li><a href="#about">关于我们</a></li>
-                <li><a href="#core-businesses">核心业务</a></li>
-                <li><a href="#ai-empowerment">AI赋能</a></li>
-                <li><a href="#global-network">全球网络</a></li>
-                <li><a href="#careers">加入我们</a></li>
-                <li><a href="#contact">联系方式</a></li>
-            </ul>
         </nav>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero">
-            <div id="particles-js"></div> <!-- For particle effects library -->
-            <div class="hero-content">
-                <h1 data-aos="fade-down" data-aos-delay="200">
-                    <span class="company-name">青岛威瑞富泰能源有限公司</span>
-                    智能驱动 <span class="highlight">未来能源</span>
-                </h1>
-                <p data-aos="fade-up" data-aos-delay="400">融合尖端AI与深厚行业经验，重塑能源投资与供应链管理新纪元。</p>
-                <a href="#about" class="cta-button" data-aos="zoom-in" data-aos-delay="600">探索更多</a>
-            </div>
-        </section>
+        <!-- 2. Hero Section - 动态视频背景 -->
+        <header class="hero-section" id="home">
+            <video autoplay muted loop playsinline class="hero-video-bg" poster="https:/your-cdn-ink.com/singularityx-hiring-cover.png">
+                <!-- 替换为真实视频链接: 内容为科技、数据流、AI交互、金融图表等混合剪辑 -->
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <!-- <source src="placeholder-tech-finance-video.webm" type="video/webm"> -->
+                您的浏览器不支持视频播放。
+            </video>
+            <h1 class="company-name">杭州零界人工智能科技有限公司</h1>
+            <p class="tagline">用AI改写金融系统的<span class="highlight-text">演化逻辑</span>.</p>
+            <a href="#positions" class="cta-button">探索未来 加入我们</a>
+        </header>
 
-        <!-- About Us Section -->
-        <section id="about" class="fade-in-section">
-            <div class="container">
-                <div class="about-text">
-                    <h2 class="section-title">关于我们 <span style="font-size: 1.5rem; color: #aaa; display:inline;">ABOUT US</span></h2>
-                    <p>青岛威瑞富泰能源有限公司，座落于风景秀丽的沿海开放城市——中国青岛，是一家专注于大宗商品贸易、能源产品、化工品、仓储物流及全球供应链管理多元化企业。</p>
-                    <p>近年来，公司积极结合<span class="highlight">人工智能（AI）技术</span>，构建智能化商品投资与供应链服务体系，为客户提供更加精准、高效的决策支持和资源整合服务。</p>
-                     <p>公司凭借独特的战略眼光与卓越的运营能力，形成了三大核心业务板块：商品供应链、商品资源投资、智能化量化交易，并与国际化运营团队、专业知识及物流服务融合，借助贸易融资和智能技术，赋能业务、促进行业数字化，满足客户多样需求。</p>
+        <main>
+            <!-- 3. 我们是谁？ -->
+            <section class="content-section" id="about-us">
+                <h2>我们是谁？</h2>
+                <p>*杭州零界人工智能科技有限公司* 正在构建一套以 <span class="highlight-text">加速回报定律</span> 为基础的AI驱动量化交易系统，目标打造一个具备：</p>
+                <ul>
+                    <li>策略自动生成与进化能力</li>
+                    <li>智能体级别的博弈与部署结构</li>
+                    <li>面向实盘执行的高频/中频交易引擎</li>
+                    <li>长期可自演化的金融智能生态系统</li>
+                </ul>
+                <p class="quote-text">我们不是做工具，而是在建造一个“<span class="highlight-text">自我成长的金融生命体</span>”。</p>
+                <!-- 占位图片：抽象神经网络图 或 数据可视化 -->
+                <img src="https://via.placeholder.com/600x300/0A0A0A/00FF7F?text=AI+Financial+Ecosystem" alt="AI金融生态系统示意图" style="max-width:100%; height:auto; margin-top:20px; border-radius: 5px; opacity: 0.7;">
+            </section>
+
+            <!-- 4. 我们的愿景 -->
+            <section class="content-section" id="vision">
+                <h2>我们的愿景</h2>
+                <p class="quote-text">“构建一个演化速度超过市场适应速度的<span class="highlight-text">智能体金融系统</span>”</p>
+                <p>我们相信，未来的金融不是人设规则，而是 <span class="highlight-text">AI设法则</span>。</p>
+                <p>我们正在打造这个“AI金融生命体”，让它学会成长、对抗、适应与赚钱。这是对金融领域的一次深刻变革，我们致力于成为这场变革的引领者，创造前所未有的价值与可能性。</p>
+                <!-- 占位图片：未来城市与数据流结合的科幻感图片 -->
+                 <img src="https://via.placeholder.com/600x300/0A0A0A/00FF7F?text=Future+of+Finance" alt="未来金融示意图" style="max-width:100%; height:auto; margin-top:20px; border-radius: 5px; opacity: 0.7;">
+            </section>
+
+            <!-- 5. 热招岗位 -->
+            <section class="content-section" id="positions">
+                <h2>热招岗位</h2>
+                <div class="job-listing">
+                    <h3>1. 强化学习研究工程师（策略演化方向）</h3>
+                    <ul>
+                        <li>构建自博弈、AlphaZero式智能体演化系统</li>
+                        <li>熟悉 PPO/SAC/DDPG/Evolutionary Search等算法</li>
+                        <li>RLlib/Stable Baselines3/PyTorch 实战经验优先</li>
+                    </ul>
                 </div>
-                <div class="about-image-placeholder">
-                    <span>AI & Energy Synergy</span>
+                <div class="job-listing">
+                    <h3>2. DevOps/交易系统架构工程师</h3>
+                    <ul>
+                        <li>搭建GPU训练调度与低延迟实盘执行系统</li>
+                        <li>精通容器化部署(Docker/Kubernetes)</li>
+                        <li>有交易所接入与高可用系统经验者优先</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-
-        <!-- Core Businesses Section -->
-        <section id="core-businesses" class="fade-in-section">
-            <div class="container">
-                <h2 class="section-title">核心业务 <span style="font-size: 1.5rem; color: #aaa;">CORE BUSINESSES</span></h2>
-                <div class="business-cards">
-                    <div class="business-card">
-                        <div class="icon-placeholder"><i class="fas fa-cubes-stacked"></i></div>
-                        <h3>商品供应链</h3>
-                        <p>主营煤炭、硫磺、锰矿、铁矿等。构建完备高效的供应链体系，从采购、运输到销售，全球优质供应商，一站式解决方案。</p>
-                    </div>
-                    <div class="business-card">
-                        <div class="icon-placeholder"><i class="fas fa-chart-line"></i></div>
-                        <h3>商品资源投资</h3>
-                        <p>聚焦矿产与农业领域。专业勘探开发海外潜力矿产，关注现代农业发展与矿山复垦，推动产业升级。</p>
-                    </div>
-                    <div class="business-card">
-                         <div class="icon-placeholder"><i class="fas fa-brain"></i></div>
-                        <h3>智能化量化交易</h3>
-                        <p>依托AI团队，运用先进算法与大数据分析，构建精准量化交易模型，实现自动化、智能化交易决策，提升投资回报率。</p>
-                    </div>
+                <div class="job-listing">
+                    <h3>3. AI产品经理/项目协调官(TPM)</h3>
+                    <ul>
+                        <li>管理策略引擎与执行系统协同开发</li>
+                        <li>熟悉AI项目流程与量化金融语境</li>
+                        <li>可作为CEO/CTO技术接口管理人</li>
+                    </ul>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- AI Empowerment Section -->
-        <section id="ai-empowerment" class="fade-in-section">
-            <div class="container">
-                <h2 class="section-title">AI赋能 <span style="font-size: 1.5rem; color: #aaa;">AI EMPOWERMENT</span></h2>
-                <p>公司通过<span class="highlight">技术创新</span>引领，将人工智能融入商品投资和供应链管理，通过技术赋能提升行业竞争力。构建智能化商品投资与供应链服务体系，为客户提供更加精准、高效的决策支持和资源整合服务。</p>
-                <div class="ai-visual-placeholder">
-                    <span>AI驱动决策优化</span>
+            <!-- 6. 我们的架构图 (简化文本展示) -->
+            <section class="content-section" id="structure">
+                <h2>团队架构</h2>
+                <div class="team-structure-diagram">
+<strong>CTO</strong>
+- <strong>策略硏究组 (RL+自博弈)：</strong>
+  -- 强化学习研究员 x2
+  -- 智能体仿真开发 x1
+- <strong>策略工程组 (量化执行)：</strong>
+  -- Alpha策略工程师 x2
+  -- 数据因子工程师 x1
+- <strong>系统架构组 (实盘执行)：</strong>
+  -- DevOps/架构师 x1
+  -- 后端开发 x1
+- <strong>AI项目协调/产品 x1</strong>
                 </div>
-            </div>
-        </section>
+                <p style="margin-top: 20px; text-align:center;">我们拥有一支顶尖的跨学科团队，致力于在AI金融领域不断突破创新。</p>
+            </section>
 
-        <!-- Global Network Section -->
-        <section id="global-network" class="fade-in-section">
-            <div class="container network-content">
-                <h2 class="section-title">全球网络与伙伴 <span style="font-size: 1.5rem; color: #aaa;">GLOBAL NETWORK</span></h2>
-                <p>业务覆盖北美、东南亚、澳大利亚、中东、日韩、俄罗斯等地。与众多世界500强、上市公司长期合作。</p>
-                <div class="map-placeholder">
-                    <!-- Placeholder for an interactive map or a static image of a world map with highlighted regions -->
+            <!-- 7. 加入方式 -->
+            <section class="content-section" id="contact">
+                <h2>加入我们，共创未来</h2>
+                <p>如果你对用AI重塑金融充满热情，如果你渴望在一个充满挑战与机遇的环境中成长，零界人工智能期待你的加入！</p>
+                <div class="contact-info" style="text-align:center; margin-top:30px;">
+                    <p><span class="highlight-text">投递邮箱:</span> hanxiaoxuan@wereen.com (邮件主题：姓名+应聘岗位)</p>
+                    <p class="contact-person">联系人：韩女士 15275423180</p>
+                    <p class="contact-person">联系人：王女士 18663979512</p>
+                    <p><span class="highlight-text">联系电话:</span> 0532-55673088</p>
                 </div>
-                <p class="partners-list">
-                    主要买家: <span class="highlight">Delong Steel, Donghai Steel, Jiuyang Steel, Hebei Steel, Sinochem International</span> 等.
-                    <br>
-                    主要供货商: <span class="highlight">Mechel, Sibanthractie Overseas AG, Peabody, Bremer, Jellinbah, Yancoal, BHP Billiton, Xcoal</span> 等.
-                </p>
-                 <p style="margin-top: 20px;">公司利用毗邻港口优越的地理位置，以山东、河北及长江流域为主要市场，大力发展战略贸易伙伴，维持长期合作关系。</p>
-            </div>
-        </section>
+                <a href="mailto:hanxiaoxuan@wereen.com?subject=应聘岗位：[请填写岗位名称] - [您的姓名]" class="cta-button" style="margin-top:30px;">立即投递简历</a>
+            </section>
+        </main>
 
-        <!-- Careers Section -->
-        <section id="careers" class="fade-in-section">
-            <div class="container">
-                <h2 class="section-title">加入我们 <span style="font-size: 1.5rem; color: #aaa;">JOIN US</span></h2>
-                <p style="text-align: center; max-width: 700px; margin: -20px auto 40px auto;">我们正在寻找对人工智能、量化交易和能源行业充满热情的顶尖人才，共同构建智能化商品投资与供应链的未来。</p>
-                <div class="job-listings">
-                    <div class="job-card">
-                        <h4>AI应用工程师</h4>
-                        <p>负责将AI技术应用于实际业务场景，优化供应链与投资决策。</p>
-                        <a href="mailto:hr@qdwfenergy.com?subject=Application for AI Application Engineer" class="apply-button">申请职位</a>
-                    </div>
-                    <div class="job-card">
-                        <h4>量化开发工程师</h4>
-                        <p>设计、开发和测试量化交易策略及系统。</p>
-                        <a href="mailto:hr@qdwfenergy.com?subject=Application for Quantitative Development Engineer" class="apply-button">申请职位</a>
-                    </div>
-                    <div class="job-card">
-                        <h4>人工智能算法工程师</h4>
-                        <p>研究、实现和优化机器学习、深度学习等AI核心算法。</p>
-                        <a href="mailto:hr@qdwfenergy.com?subject=Application for AI Algorithm Engineer" class="apply-button">申请职位</a>
-                    </div>
-                    <div class="job-card">
-                        <h4>大模型应用工程师</h4>
-                        <p>探索和应用大型语言模型（LLM）等技术于公司业务，提升智能化水平。</p>
-                        <a href="mailto:hr@qdwfenergy.com?subject=Application for Large Model Application Engineer" class="apply-button">申请职位</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="fade-in-section">
-            <div class="container">
-                <h2 class="section-title">联系我们 <span style="font-size: 1.5rem; color: #aaa;">CONTACT US</span></h2>
-                <p>青岛威瑞富泰能源有限公司</p>
-                <p>地址：中国青岛市 [请补充详细地址]</p>
-                <p>电话：<a href="tel:+86-XXX-XXXXXXX">+86-XXX-XXXXXXX</a> [请补充电话]</p>
-                <p>邮箱：<a href="mailto:info@qdwfenergy.com">info@qdwfenergy.com</a> [请补充邮箱]</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; <span id="currentYear"></span> 青岛威瑞富泰能源有限公司. All Rights Reserved.</p>
-        <p>技术与创新，驱动能源未来</p>
-    </footer>
-
-    <!-- For Particle Effects (example: particles.js) -->
-    <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
-    <!-- For Scroll Animations (example: AOS - Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <!-- 8. 页脚 -->
+        <footer class="main-footer">
+            <p>&copy; 2024 杭州零界人工智能科技有限公司. All Rights Reserved.</p>
+            <p>探索AI金融的无限可能</p>
+        </footer>
+    </div>
 
     <script>
-        // --- AOS Initialization ---
-        AOS.init({
-            duration: 800, // values from 0 to 3000, with step 50ms
-            once: true, // whether animation should happen only once - while scrolling down
-        });
+        // --- 开场动画控制 ---
+        window.onload = () => {
+            const loader = document.getElementById('starfield-loader');
+            const pageWrapper = document.querySelector('.page-wrapper');
 
-        // --- Current Year for Footer ---
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+            // 模拟星空动画和凝聚过程 (1秒)
+            // 实际项目中这里会是复杂的JS动画库调用，如Three.js, PixiJS或自定义Canvas
+            setTimeout(() => {
+                // 假设动画：loader内容变化或添加class触发CSS动画
+                if(loader) {
+                    loader.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                    loader.style.opacity = '0';
+                    loader.style.transform = 'scale(0.5)'; // 凝聚成小球的效果
+                }
+            }, 700); // 动画持续0.7秒
 
-        // --- Mobile Menu Toggle ---
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            // Optional: Change hamburger to X icon
-            const icon = mobileMenu.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-        
-        // --- Close mobile menu when a link is clicked ---
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    const icon = mobileMenu.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+            setTimeout(() => {
+                if(loader) loader.style.display = 'none'; // 隐藏加载动画
+                if(pageWrapper) pageWrapper.style.opacity = '1'; // 显示主内容
+            }, 1000); // 总共1秒后显示页面
+        };
+
+        // (可选) 导航栏平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 考虑导航栏高度（如果导航栏是fixed且不透明）
+                    // const navHeight = document.querySelector('.main-nav') ? document.querySelector('.main-nav').offsetHeight : 0;
+                    // const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    // const offsetPosition = elementPosition - navHeight;
+
+                    // window.scrollTo({
+                    //     top: offsetPosition,
+                    //     behavior: "smooth"
+                    // });
+                    // 简化版，不考虑导航栏遮挡
+                     targetElement.scrollIntoView({
+                         behavior: 'smooth'
+                     });
                 }
             });
         });
 
-        // --- Active Nav Link on Scroll ---
-        const sections = document.querySelectorAll('main section');
-        const navLi = document.querySelectorAll('nav ul li a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                // Adjust offset if header is fixed
-                if (pageYOffset >= (sectionTop - sectionHeight / 3 - document.querySelector('header').offsetHeight)) {
-                    current = section.getAttribute('id');
+        // (可选) 滚动时元素出现动画 - 简单示例
+        const revealElements = document.querySelectorAll('.content-section');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) { // 元素进入视口底部100px时触发
+                    el.style.animation = `fadeInUp 1s ease-out forwards`;
                 }
             });
-
-            navLi.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href').substring(1) === current) {
-                    a.classList.add('active');
-                }
-            });
-            // Ensure "首页" is active when at the very top
-            if (pageYOffset < sections[0].offsetTop - document.querySelector('header').offsetHeight) {
-                 navLi.forEach(a => a.classList.remove('active'));
-                 document.querySelector('nav ul li a[href="#hero"]').classList.add('active');
-            }
-        });
-
-
-        // --- Simple Fade-in on Scroll (Intersection Observer) ---
-        const fadeInSections = document.querySelectorAll('.fade-in-section');
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Optional: Animate only once
-                }
-            });
-        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
-
-        fadeInSections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-
-        // --- Placeholder for Particles.js ---
-        /*
-        if (document.getElementById('particles-js')) {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                    "color": { "value": "#00c6ff" },
-                    "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
-                    "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } },
-                    "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } },
-                    "line_linked": { "enable": true, "distance": 150, "color": "#00c6ff", "opacity": 0.4, "width": 1 },
-                    "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                    "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
-                },
-                "retina_detect": true
-            });
-        }
-        */
-        // Note: To use particles.js, uncomment the script tag in <head> and this block.
-        // You'll need to download particles.js and host it or use a CDN.
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // 初始检查一次
 
     </script>
 </body>
